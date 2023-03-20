@@ -225,7 +225,7 @@ var CustMergeManager = (function (_super) {
         if (rng.isSingleCell) {
             rng = null;
         }
-        //console.log(rng);
+        console.log(rng);
         return rng;
     };
     return CustMergeManager;
