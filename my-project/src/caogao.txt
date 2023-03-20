@@ -1,0 +1,46 @@
+        initMonthCombo: function (monthCombo) {
+            this.monthCombo = monthCombo;
+        },
+        getMonths() {
+            let months = [];
+
+            let time = new Date();
+            time.setMonth(time.getMonth() + 1);
+            for (let i = 0; i < 24; i++) {
+                months.push(time.getFullYear().toString() + fixZeroStart(time.getMonth(), 2).toString());
+                time.setMonth(time.getMonth() - 1);
+            }
+            return months;
+        },
+        onMonthSelectedIndexChanged: function () {
+            console.log(this.monthCombo.text)
+            fetch('http://192.168.1.103:5000/caled', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ month: this.monthCombo.text })
+            })
+                .then(response => response.json())
+                .then(data => this.calStatus = data["status"])
+                .catch(error => console.error(error));
+        },
+
+        caling() {
+            console.log("计算逻辑");
+        },
+
+        initQueryStyleCombo: function (queryStyleCombo) {
+            this.queryStyleCombo = queryStyleCombo;
+        },
+        getQueryStyles() {
+            let months = [];
+
+            let time = new Date();
+            time.setMonth(time.getMonth() + 1);
+            for (let i = 0; i < 24; i++) {
+                months.push(time.getFullYear().toString() + fixZeroStart(time.getMonth(), 2).toString());
+                time.setMonth(time.getMonth() - 1);
+            }
+            return months;
+        },
